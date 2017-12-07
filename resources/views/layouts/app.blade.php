@@ -7,10 +7,14 @@
     <!-- /plugin -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="adminlte/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{url('/')}}/adminlte/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="adminlte/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="{{url('/')}}/adminlte/dist/css/skins/_all-skins.min.css">
+
+    <!-- App Custome -->
+    <link rel="stylesheet" href="{{url('/')}}/css/myapp.css">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -64,7 +68,7 @@
 <!-- /plugin -->
 
 <!-- AdminLTE App -->
-<script src="adminlte/dist/js/adminlte.min.js"></script>
+<script src="{{url('/')}}/adminlte/dist/js/adminlte.min.js"></script>
 
 </body>
 </html>

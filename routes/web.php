@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/home', function (){
     return view('home');
 });
+
+Route::group(['prefix'=>'designer'], function () {
+    Route::get('/insert', 'DesignController@insert');
+});
