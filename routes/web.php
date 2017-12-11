@@ -22,3 +22,8 @@ Route::get('/home', function (){
 Route::group(['prefix'=>'designer'], function () {
     Route::get('/insert', 'DesignController@insert');
 });
+
+Route::group(['prefix'=>'kasir'], function () {
+    Route::get('/data', 'KasirController@getData');
+    Route::get('/process', 'KasirController@getProcess');
+});
