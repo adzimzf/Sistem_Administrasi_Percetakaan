@@ -4,32 +4,58 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <!-- Horizontal Form -->
-                <div class="box box-info">
+                <form action="{{url('/designer/insert')}}" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Nomer Bon :SKK-123-2017-YUYU</h3>
+                        <input type="hidden" name="nomer-bon" value="SKK-123-2017-YUYU">
                         <div class="pull-right">
                             <div class="pull-right">
-                                <input class="form-control datepicker" id="inputPassword3" placeholder="text" type="text">
+                                <input class="form-control datepicker" id="inputPassword3" name="tanggal-bon" required="required" placeholder="text" type="text">
                             </div>
                         </div>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form class="form-horizontal">
+                    <div class="form-horizontal" action="">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
 
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="inputEmail3" placeholder="Nama Customer" type="text">
+                                    <input class="form-control" id="inputEmail3" placeholder="Nama Customer" name="nama-customer" required="required" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">No Telp/Hp/Email</label>
 
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="inputPassword3" placeholder="Nomer Telepon" type="number">
+                                    <input class="form-control" id="inputPassword3" placeholder="Nomer Telepon" name="nomer-telp-customer" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Biaya Edit</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="inputPassword3" placeholder="Satuan Rp" name="biaya-edit" type="number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Biaya Setting</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="inputPassword3" placeholder="Satuan Rp" name="biaya-setting" type="number">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -42,51 +68,58 @@
                                                 <div class="col-sm-1 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Sumber</label>
-                                                        <select name="" id="" class="form-control flat">
-                                                            <option value="">File</option>
-                                                            <option value="">CD</option>
-                                                            <option value="">Dll</option>
+                                                        <select name="detail-sumber[]" id="" class="form-control flat">
+                                                            <option value="File">File</option>
+                                                            <option value="CD">CD</option>
+                                                            <option value="Dll">Dll</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">File</label>
-                                                        <input class="form-control" id="exampleInputEmail1" placeholder="Pilih File" type="file">
+                                                        <input class="form-control" id="exampleInputEmail1" name="detail-file[]" placeholder="Pilih File" type="file">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-1 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Hal</label>
-                                                        <input class="form-control" id="exampleInputEmail1" placeholder="Jumlah Halaman" type="text">
+                                                        <input class="form-control" id="exampleInputEmail1" name="detail-halaman[]" placeholder="Jumlah Halaman" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-1 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">@print</label>
-                                                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="number">
+                                                        <input class="form-control" id="exampleInputEmail1" name="detail-banyaknya[]" placeholder="" type="number">
                                                     </div>
                                                 </div>
+                                                <input type="hidden" class="detail-kertas" name="detail-kertas" value="">
                                                 <div class="col-sm-2 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Jenis Kertas</label>
-                                                        <select name="" id="" class="form-control">
-                                                            <option value="">A3</option>
-                                                            <option value="">A2</option>
-                                                            <option value="">A1</option>
-                                                            <option value="">A</option>
+                                                        <select name="" id="" class="form-control jenis-kertas">
+                                                            <option value="">-</option>
+                                                            @foreach($jenisKertas as $data)
+                                                                <option value="{{$data->id}}" size="{{$data->ukuran}}">{{$data->nama}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2 no-padding">
+                                                <div class="col-sm-2 no-padding ukuran-kertas-select" id="">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Ukuran Kertas</label>
-                                                        <select name="" id="" class="form-control">
-                                                            <option value="">A3</option>
-                                                            <option value="">A2</option>
-                                                            <option value="">A1</option>
-                                                            <option value="">A</option>
+                                                        <select name="" id="" class="form-control sel-ukuran-kertas">
+                                                            <option value="">-</option>
+                                                            @foreach($jenisKertas as $data)
+                                                                <option value="{{$data->ukuran}}">{{$data->ukuran}}</option>
+                                                            @endforeach
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 no-padding ukuran-kertas-input hide" id="">
+                                                    <div class="form-group cuz-form-group">
+                                                        <label for="exampleInputEmail1">Ukuran Kertas(cm)</label>
+                                                        <input type="text" class="form-control inp-ukuran-kertas" placeholder="PxL" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1 no-padding">
@@ -123,18 +156,19 @@
                                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
 
                                 <div class="col-sm-12">
-                                    <button class="btn btn-primary pull-right" id="add-data-print">Tambah</button>
+                                    <input type="button" class="btn btn-primary pull-right" id="add-data-print" value="Tambah">
                                 </div>
                             </div>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-default">Cancel</button>
+                            <button type="button" class="btn btn-default">Cancel</button>
                             <button type="submit" class="btn btn-info pull-right">Simpan</button>
                         </div>
                         <!-- /.box-footer -->
-                    </form>
+                    </div>
                 </div>
+                </form>
                 <!-- /.box -->
             </div>
         </div>

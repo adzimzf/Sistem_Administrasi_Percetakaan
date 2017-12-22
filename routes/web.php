@@ -20,7 +20,8 @@ Route::get('/home', function (){
 });
 
 Route::group(['prefix'=>'designer'], function () {
-    Route::get('/insert', 'DesignController@insert');
+    Route::get('/insert', 'DesignController@index');
+    Route::post('/insert', 'DesignController@insert');
 });
 
 Route::group(['prefix'=>'kasir'], function () {

@@ -61,7 +61,7 @@
                                             <td>
                                                 <input class="form-control harga-satuan form-input-khusus" type="number" value="5000">
                                             </td>
-                                            <td class="sum"></td>
+                                            <td class="sum text-right"></td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
@@ -71,23 +71,23 @@
                                             <td>
                                                 <input class="form-control harga-satuan form-input-khusus" type="number" value="5000">
                                             </td>
-                                            <td class="sum"></td>
+                                            <td class="sum text-right"></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Total</td>
-                                            <td id="sumTotal">10000</td>
+                                            <td id="sumTotal" class="text-right">10000</td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Uang Muka</td>
                                             <td >
-                                                <input id="uang_muka" class="form-control form-input-khusus" type="number" value="1000">
+                                                <input id="uang_muka" class="form-control text-right form-input-khusus" type="text" value="1000">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Sisa</td>
-                                            <td id="sumSisa">10000</td>
+                                            <td id="sumSisa" class="text-right">10000</td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -95,6 +95,12 @@
 
 
                         </div>
+                        <!-- box footer -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                        </div>
+                        <!-- ./box-footer -->
                     </form>
                 </div>
                 <!-- /.box -->
