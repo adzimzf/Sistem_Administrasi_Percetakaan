@@ -4,6 +4,13 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                @if (Session::has('message_designer_add_spk'))
+                    <div class="alert alert-info alert-dismissable text-center ">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong> {{ Session::get('message_designer_add_spk') }} </strong>
+                    </div>
+                @endif
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -18,8 +25,8 @@
                     {{csrf_field()}}
                     <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Nomer Bon :SKK-123-2017-YUYU</h3>
-                        <input type="hidden" name="nomer-bon" value="SKK-123-2017-YUYU">
+                        <h3 class="box-title">Nomer Bon :SKK-{{date("His-Y")}}-YUYU</h3>
+                        <input type="hidden" name="nomer-bon" value="SKK-{{date("His-Y")}}-YUYU">
                         <div class="pull-right">
                             <div class="pull-right">
                                 <input class="form-control datepicker" id="inputPassword3" name="tanggal-bon" required="required" placeholder="text" type="text">
@@ -93,7 +100,6 @@
                                                         <input class="form-control" id="exampleInputEmail1" name="detail-banyaknya[]" placeholder="" type="number">
                                                     </div>
                                                 </div>
-                                                <input type="hidden" class="detail-kertas" name="detail-kertas" value="">
                                                 <div class="col-sm-2 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Jenis Kertas</label>
@@ -105,18 +111,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2 no-padding ukuran-kertas-select" id="">
-                                                    <div class="form-group cuz-form-group">
-                                                        <label for="exampleInputEmail1">Ukuran Kertas</label>
-                                                        <select name="" id="" class="form-control sel-ukuran-kertas">
-                                                            <option value="">-</option>
-                                                            @foreach($jenisKertas as $data)
-                                                                <option value="{{$data->ukuran}}">{{$data->ukuran}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 no-padding ukuran-kertas-input hide" id="">
+                                                <div class="col-md-2 no-padding ukuran-kertas-input" id="">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Ukuran Kertas(cm)</label>
                                                         <input type="text" class="form-control inp-ukuran-kertas" placeholder="PxL" value="">

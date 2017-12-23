@@ -76,6 +76,14 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <td colspan="5" class="text-right bold">Biaya Seting</td>
+                                            <td id="sumTotal" class="text-right">10000</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-right bold">Biaya Edit</td>
+                                            <td id="sumTotal" class="text-right">10000</td>
+                                        </tr>
+                                        <tr>
                                             <td colspan="5" class="text-right bold">Total</td>
                                             <td id="sumTotal" class="text-right">10000</td>
                                         </tr>

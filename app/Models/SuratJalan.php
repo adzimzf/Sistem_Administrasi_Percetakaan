@@ -15,4 +15,6 @@ class SuratJalan extends Model
     protected $table = 'surat_jalan';
 
     protected $primaryKey = 'id';
+
+    public $incrementing = false;
 }

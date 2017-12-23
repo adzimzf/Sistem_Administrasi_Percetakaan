@@ -30,66 +30,23 @@
                                 </thead>
                                 <tbody>
 
-                                <tr>
-                                    <td>1.</td>
-                                    <td>SKK-123-2017-YUYU</td>
-                                    <td>Sukarni</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-red">55%</span></td>
-                                    <td>
-                                        <button class="btn btn-primary">Process</button>
-                                        <button class="btn btn-primary">Detail</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>SKK-123-2017-YUYU</td>
-                                    <td>Sukarni</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-yellow">70%</span></td>
-                                    <td>
-                                        <button class="btn btn-primary">Process</button>
-                                        <button class="btn btn-primary">Detail</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>SKK-123-2017-YUYU</td>
-                                    <td>Sukarni</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-light-blue">30%</span></td>
-                                    <td>
-                                        <button class="btn btn-primary">Process</button>
-                                        <button class="btn btn-primary">Detail</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>SKK-123-2017-YUYU</td>
-                                    <td>Sukarni</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-green">90%</span></td>
-                                    <td>
-                                        <button class="btn btn-primary">Process</button>
-                                        <button class="btn btn-primary">Detail</button>
-                                    </td>
-                                </tr>
+                                @foreach($data as $data)
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>{{$data->id}}</td>
+                                        <td>{{$data->nama}}</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-red">55%</span></td>
+                                        <td>
+                                            <a href="{{url('/kasir/process/'.$data->id)}}}" class="btn btn-primary">Process</a>
+                                            <a href="{{url('/kasir/process/'.$data->id)}}}" class="btn btn-primary">Detail</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
