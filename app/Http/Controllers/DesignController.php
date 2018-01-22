@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisKertas;
 use App\Models\SuratJalan;
+use App\Models\SuratJalanDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -37,9 +38,15 @@ class DesignController extends Controller
 
         $status = false;
 
-        DB::transaction(function () use ($data, &$status) {
+        DB::transaction(function () use ($data, &$status, $request) {
             if ($data->save()) {
-                $status = true;
+                if ($this->insertDetail($request, $data->id)) {
+                    $status = true;
+                } else {
+                    DB::rollback();
+                }
+            } else {
+                DB::rollback();
             }
         });
         if ($status) {
@@ -48,6 +55,34 @@ class DesignController extends Controller
         } else {
 
         }
+
+    }
+
+    private function insertDetail(Request $request, $suratJalanId)
+    {
+        $length = sizeof($request->input("detail-sumber"));
+
+        $data = new SuratJalanDetail();
+
+        for($i = 0; $i < $length; $i++) {
+            $data->surat_jalan_id   = $suratJalanId;
+            $data->source           = $request->input("detail-sumber")[$i];
+            $data->file_address     = "belum";
+            $data->sum_of_pages     = $request->input("detail-halaman")[$i];
+            $data->quantity         = $request->input("detail-banyaknya")[$i];
+            $data->jenis_kertas_id  = $request->input("detail-halaman")[$i];
+            $data->peper_size       = $request->input("detail-jenis-kertas")[$i];
+            $data->duplex           = $request->input("detail-duplex")[$i];
+            $data->box              = $request->input("detail-box")[$i];
+
+            if (!$data->save()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private function saveImage($file) {
 
     }
 }

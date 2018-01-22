@@ -29,7 +29,7 @@
                         <input type="hidden" name="nomer-bon" value="SKK-{{date("His-Y")}}-YUYU">
                         <div class="pull-right">
                             <div class="pull-right">
-                                <input class="form-control datepicker" id="inputPassword3" name="tanggal-bon" required="required" placeholder="text" type="text">
+                                <input class="form-control datepicker" id="inputPassword3" name="tanggal-bon" required="required" placeholder="text" type="text" value="{{date("Y-m-d")}}">
                             </div>
                         </div>
                     </div>
@@ -103,10 +103,10 @@
                                                 <div class="col-sm-2 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Jenis Kertas</label>
-                                                        <select name="" id="" class="form-control jenis-kertas">
+                                                        <select name="detail-jenis-kertas" id="" class="form-control jenis-kertas">
                                                             <option value="">-</option>
                                                             @foreach($jenisKertas as $data)
-                                                                <option value="{{$data->id}}" size="{{$data->ukuran}}">{{$data->nama}}</option>
+                                                                <option value="{{$data->id}}" size="{{$data->size}}">{{$data->nama}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -114,22 +114,22 @@
                                                 <div class="col-md-2 no-padding ukuran-kertas-input" id="">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Ukuran Kertas(cm)</label>
-                                                        <input type="text" class="form-control inp-ukuran-kertas" placeholder="PxL" value="">
+                                                        <input name="detail-ukuran-kertas" type="text" class="form-control inp-ukuran-kertas" placeholder="P x L" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Duplex</label>
-                                                        <select name="" id="" class="form-control">
-                                                            <option value="">Short</option>
-                                                            <option value="">Long</option>
+                                                        <select name="detail-duplex" id="" class="form-control">
+                                                            <option value="Short">Short</option>
+                                                            <option value="Long">Long</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Box</label>
-                                                        <input type="number" class="form-control">
+                                                        <input name="detail-box" type="number" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -176,6 +176,6 @@
 @endpush
 
 @push('scripts')
-    {!! Html::script('/js/pages/designer/form.js') !!}
     {!! Html::script('/adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') !!}
+    {!! Html::script('/js/pages/designer/form.js') !!}
 @endpush

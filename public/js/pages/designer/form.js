@@ -1,7 +1,4 @@
 $(function () {
-    date = new Date();
-    tanggal = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
-    $('.datepicker').val(tanggal);
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd',
         autoClose: true,
@@ -21,4 +18,4 @@ $(function () {
         size = $(this).find("option:selected").attr("size");
         $(this).parents(".div-data-print").find(".inp-ukuran-kertas").val(size);
     });
-});
+})
