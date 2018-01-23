@@ -14,4 +14,9 @@ class SuratJalanDetail extends Model
 {
     protected $table = 'surat_jalan_detail';
     protected $primaryKey = 'id';
+
+    public function jenisKertas()
+    {
+        return $this->hasOne("App\Models\JenisKertas", 'id', 'jenis_kertas_id');
+    }
 }

@@ -14,4 +14,9 @@ class JenisKertas extends Model
     protected $table = 'jenis_kertas';
 
     protected $primaryKey = 'id';
+
+    public function suratJalanId()
+    {
+        return $this->belongsTo('App\Models\SuratJalanDetail');
+    }
 }

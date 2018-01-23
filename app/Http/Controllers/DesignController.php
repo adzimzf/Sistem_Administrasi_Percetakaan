@@ -62,16 +62,17 @@ class DesignController extends Controller
     {
         $length = sizeof($request->input("detail-sumber"));
 
-        $data = new SuratJalanDetail();
+
 
         for($i = 0; $i < $length; $i++) {
+            $data = new SuratJalanDetail();
             $data->surat_jalan_id   = $suratJalanId;
             $data->source           = $request->input("detail-sumber")[$i];
-            $data->file_address     = "belum";
-            $data->sum_of_pages     = $request->input("detail-halaman")[$i];
+            $data->file_address     = $this->saveImage($request->file('detail-file')[$i]);
+            $data->page             = $request->input("detail-halaman")[$i];
             $data->quantity         = $request->input("detail-banyaknya")[$i];
-            $data->jenis_kertas_id  = $request->input("detail-halaman")[$i];
-            $data->peper_size       = $request->input("detail-jenis-kertas")[$i];
+            $data->jenis_kertas_id  = $request->input("detail-jenis-kertas")[$i];
+            $data->peper_size       = $request->input("detail-ukuran-kertas")[$i];
             $data->duplex           = $request->input("detail-duplex")[$i];
             $data->box              = $request->input("detail-box")[$i];
 
@@ -83,6 +84,12 @@ class DesignController extends Controller
     }
 
     private function saveImage($file) {
+        if($file) {
+            $namaFile = sha1(date("Y-m-d H:i:s"));
+            $file->move('images/surat_jalan', $namaFile);
+            return $namaFile;
+        }
+        return "";
 
     }
 }

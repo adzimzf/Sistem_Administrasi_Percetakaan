@@ -103,7 +103,7 @@
                                                 <div class="col-sm-2 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Jenis Kertas</label>
-                                                        <select name="detail-jenis-kertas" id="" class="form-control jenis-kertas">
+                                                        <select name="detail-jenis-kertas[]" id="" class="form-control jenis-kertas">
                                                             <option value="">-</option>
                                                             @foreach($jenisKertas as $data)
                                                                 <option value="{{$data->id}}" size="{{$data->size}}">{{$data->nama}}</option>
@@ -114,13 +114,13 @@
                                                 <div class="col-md-2 no-padding ukuran-kertas-input" id="">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Ukuran Kertas(cm)</label>
-                                                        <input name="detail-ukuran-kertas" type="text" class="form-control inp-ukuran-kertas" placeholder="P x L" value="">
+                                                        <input name="detail-ukuran-kertas[]" type="text" class="form-control inp-ukuran-kertas" placeholder="P x L" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Duplex</label>
-                                                        <select name="detail-duplex" id="" class="form-control">
+                                                        <select name="detail-duplex[]" id="" class="form-control">
                                                             <option value="Short">Short</option>
                                                             <option value="Long">Long</option>
                                                         </select>
@@ -129,7 +129,7 @@
                                                 <div class="col-md-1 no-padding">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Box</label>
-                                                        <input name="detail-box" type="number" class="form-control">
+                                                        <input name="detail-box[]" type="number" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>

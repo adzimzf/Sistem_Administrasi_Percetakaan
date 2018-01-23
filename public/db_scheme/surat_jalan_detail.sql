@@ -39,3 +39,6 @@ ALTER TABLE `surat_jalan_detail`
 ALTER TABLE `surat_jalan_detail`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+-- Change box to null
+ALTER TABLE `surat_jalan_detail` CHANGE `box` `box` INT(11) NULL DEFAULT '0';

@@ -23,3 +23,5 @@ CREATE TABLE `surat_jalan` (
 ALTER TABLE `surat_jalan`
   ADD PRIMARY KEY (`id`);
 COMMIT;
+
+ALTER TABLE `surat_jalan` CHANGE `biaya_edit` `biaya_edit` INT(11) NULL DEFAULT '0', CHANGE `biaya_setting` `biaya_setting` INT(11) NULL DEFAULT '0';

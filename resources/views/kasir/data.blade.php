@@ -42,8 +42,8 @@
                                         </td>
                                         <td><span class="badge bg-red">55%</span></td>
                                         <td>
-                                            <a href="{{url('/kasir/process/'.$data->id)}}}" class="btn btn-primary">Process</a>
-                                            <a href="{{url('/kasir/process/'.$data->id)}}}" class="btn btn-primary">Detail</a>
+                                            <a href="{{url('/kasir/process/'.$data->id)}}" class="btn btn-primary">Process</a>
+                                            <a href="{{url('/kasir/process/'.$data->id)}}" class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -22,7 +22,7 @@
                                    Nama
                                </div>
                                <div class="col-md-10">
-                                   Adzim zul fahmi
+                                   {{$suratJalan->nama}}
                                </div>
                            </div>
                             <div class="col-md-12 my-data-detail">
@@ -30,7 +30,7 @@
                                     Nomer Telepon/ Email
                                 </div>
                                 <div class="col-md-10">
-                                    087830250895
+                                    {{$suratJalan->no_telepon}}
                                 </div>
                             </div>
 
@@ -53,35 +53,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($suratJalanDetail as $indexKey => $detail)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Spanduk 1x2</td>
-                                            <td class="qty">2</td>
-                                            <td>FLEXY CHINA</td>
+                                            <td>{{$indexKey+1}}</td>
+                                            <td>{{$detail->peper_size}}</td>
+                                            <td class="qty">{{$detail->quantity}}</td>
+                                            <td>{{$detail->jenisKertas()->get()[0]->nama}}</td>
                                             <td>
-                                                <input class="form-control harga-satuan form-input-khusus" type="number" value="5000">
+                                                <input class="form-control harga-satuan form-input-khusus" type="number" value="0">
                                             </td>
-                                            <td class="sum text-right"></td>
+                                            <td class="sum text-right">0</td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Spanduk 1x2</td>
-                                            <td class="qty">4</td>
-                                            <td>FLEXY CHINA</td>
-                                            <td>
-                                                <input class="form-control harga-satuan form-input-khusus" type="number" value="5000">
-                                            </td>
-                                            <td class="sum text-right"></td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Biaya Seting</td>
-                                            <td id="sumTotal" class="text-right">10000</td>
+                                            <td id="sumTotal" class="text-right">{{$suratJalan->biaya_setting}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Biaya Edit</td>
-                                            <td id="sumTotal" class="text-right">10000</td>
+                                            <td id="sumTotal" class="text-right">{{$suratJalan->biaya_edit}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Total</td>

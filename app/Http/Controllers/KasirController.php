@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SuratJalan;
+use App\Models\SuratJalanDetail;
 use Illuminate\Http\Request;
 
 class KasirController extends Controller
@@ -13,8 +14,10 @@ class KasirController extends Controller
         return view('kasir.data', ['data'=>$data]);
     }
 
-    public function getProcess(Request $request)
+    public function getProcess($id)
     {
-        return view('kasir.process');
+        $suratJalan  = SuratJalan::where(['id'=>$id])->first();
+        $suratJalanDetail = SuratJalanDetail::where(['surat_jalan_id'=>$suratJalan->id])->get();
+        return view('kasir.process', ['suratJalan'=>$suratJalan, 'suratJalanDetail'=>$suratJalanDetail]);
     }
 }
