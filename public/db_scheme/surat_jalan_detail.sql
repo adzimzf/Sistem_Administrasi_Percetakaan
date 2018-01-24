@@ -42,3 +42,6 @@ COMMIT;
 
 -- Change box to null
 ALTER TABLE `surat_jalan_detail` CHANGE `box` `box` INT(11) NULL DEFAULT '0';
+
+-- add biaya on table surat jalan detail
+ALTER TABLE `surat_jalan_detail` ADD `harga_satuan` INT NULL DEFAULT NULL AFTER `box`, ADD `harga_jumlah` INT NULL DEFAULT NULL AFTER `harga_satuan`;

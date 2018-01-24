@@ -1,6 +1,8 @@
 @extends("layouts.app")
 
 @section('content')
+    {{csrf_field()}}
+    <input type="hidden" id="surat-jalan-id" value="{{$suratJalan->id}}">
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -15,7 +17,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form class="form-horizontal">
+                    <div class="form-horizontal">
                         <div class="box-body">
                            <div class="col-md-12 my-data-detail">
                                <div class="col-md-2 bold">
@@ -67,17 +69,21 @@
                                     @endforeach
                                     </tbody>
                                     <tfoot>
+                                        <tr style="background: #f39c12;">
+                                            <td colspan="5" class="text-right bold">Total</td>
+                                            <td id="sumTotal" class="text-right">0</td>
+                                        </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Biaya Seting</td>
-                                            <td id="sumTotal" class="text-right">{{$suratJalan->biaya_setting}}</td>
+                                            <td id="biayaSeting" class="text-right">{{$suratJalan->biaya_setting}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Biaya Edit</td>
-                                            <td id="sumTotal" class="text-right">{{$suratJalan->biaya_edit}}</td>
+                                            <td id="biayaEdit" class="text-right">{{$suratJalan->biaya_edit}}</td>
                                         </tr>
-                                        <tr>
+                                        <tr style="background: #f39c12;">
                                             <td colspan="5" class="text-right bold">Total</td>
-                                            <td id="sumTotal" class="text-right">10000</td>
+                                            <td id="sumTotal2" class="text-right">0</td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Uang Muka</td>
@@ -96,12 +102,13 @@
 
                         </div>
                         <!-- box footer -->
+
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                            <button type="button" class="btn btn-default">Cancel</button>
+                            <button type="button" class="btn btn-info pull-right" id="btn-simpan">Simpan</button>
                         </div>
                         <!-- ./box-footer -->
-                    </form>
+                    </div>
                 </div>
                 <!-- /.box -->
             </div>
@@ -115,6 +122,6 @@
 @endpush
 
 @push('scripts')
-    {!! Html::script('/js/pages/kasir/process.js') !!}
     {!! Html::script('/adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') !!}
+    {!! Html::script('/js/pages/kasir/process.js') !!}
 @endpush

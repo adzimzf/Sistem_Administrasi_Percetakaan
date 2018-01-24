@@ -25,6 +25,7 @@ Route::group(['prefix'=>'designer'], function () {
 });
 
 Route::group(['prefix'=>'kasir'], function () {
-    Route::get('/data', 'KasirController@getData');
-    Route::get('/process/{id}', 'KasirController@getProcess');
+    Route::get('data',             'KasirController@getData');
+    Route::get('process/{id}',     'KasirController@getProcess');
+    Route::post('setharga',        'KasirController@setHarga');
 });
