@@ -1,7 +1,7 @@
-var sum;
-var sum2;
-var DP;
-var sisaTotal;
+var sum = $("#sumTotal").text();
+var sum2 = $("#sumTotal2").text();
+var DP = $("#uang_muka").val();
+var sisaTotal = $("#sumSisa").text();
 $(function () {
     $(".harga-satuan").keyup(function () {
         qty = $(this).parent().prev().prev().text();
@@ -39,6 +39,21 @@ $(function () {
         $("#sumSisa").text(sisaTotal);
     }
 
+    function getDataDetail() {
+        dataDetail = [];
+        $(".rows").each(function () {
+            harga_satuan = $(this).find(".harga-satuan").val();
+            detail_id    = $(this).find(".detail_id").val();
+            harga_jumlah = $(this).find(".sum").text();
+            dataDetail.push({
+                detail_id    : detail_id,
+                harga_satuan : harga_satuan,
+                harga_jumlah : harga_jumlah
+            })
+        });
+        return JSON.stringify(dataDetail);
+    }
+
     $("#btn-simpan").click(function () {
         url  = "/kasir/setharga"
         //build form data
@@ -49,6 +64,7 @@ $(function () {
         data.append("total2", sum2);
         data.append("uang-muka", DP);
         data.append("sisa", sisaTotal);
+        data.append("data-detail", getDataDetail());
 
         $.ajax({
             type: "POST",

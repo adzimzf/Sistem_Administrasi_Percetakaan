@@ -56,22 +56,24 @@
                                     </thead>
                                     <tbody>
                                     @foreach($suratJalanDetail as $indexKey => $detail)
-                                        <tr>
+                                        <tr class="rows">
+                                            <input class="detail_id" type="hidden" value="{{$detail->id}}">
                                             <td>{{$indexKey+1}}</td>
                                             <td>{{$detail->peper_size}}</td>
                                             <td class="qty">{{$detail->quantity}}</td>
                                             <td>{{$detail->jenisKertas()->get()[0]->nama}}</td>
                                             <td>
-                                                <input class="form-control harga-satuan form-input-khusus" type="number" value="0">
+                                                <input class="form-control harga-satuan form-input-khusus" type="number" value="{{$detail->harga_satuan}}"
+                                                @if(!$edit)disabled="disabled"@endif>
                                             </td>
-                                            <td class="sum text-right">0</td>
+                                            <td class="sum text-right">{{$detail->harga_jumlah}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr style="background: #f39c12;">
                                             <td colspan="5" class="text-right bold">Total</td>
-                                            <td id="sumTotal" class="text-right">0</td>
+                                            <td id="sumTotal" class="text-right">{{$suratJalan->total1}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Biaya Seting</td>
@@ -83,17 +85,17 @@
                                         </tr>
                                         <tr style="background: #f39c12;">
                                             <td colspan="5" class="text-right bold">Total</td>
-                                            <td id="sumTotal2" class="text-right">0</td>
+                                            <td id="sumTotal2" class="text-right">{{$suratJalan->total2}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Uang Muka</td>
                                             <td >
-                                                <input id="uang_muka" class="form-control text-right form-input-khusus" type="text" value="1000">
+                                                <input id="uang_muka" class="form-control text-right form-input-khusus" type="text" value="{{$suratJalan->uang_muka}}">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-right bold">Sisa</td>
-                                            <td id="sumSisa" class="text-right">10000</td>
+                                            <td id="sumSisa" class="text-right">{{$suratJalan->sisa}}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
