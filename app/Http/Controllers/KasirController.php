@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisCetakan;
 use App\Models\SuratJalan;
 use App\Models\SuratJalanDetail;
 use Illuminate\Http\Request;
@@ -16,8 +17,8 @@ class KasirController extends Controller
 
     public function getProcess($id)
     {
-        $suratJalan  = SuratJalan::where(['id'=>$id])->first();
-        $suratJalanDetail = SuratJalanDetail::where(['surat_jalan_id'=>$suratJalan->id])->get();
+        $suratJalan         = SuratJalan::where(['id'=>$id])->first();
+        $suratJalanDetail   = SuratJalanDetail::where(['surat_jalan_id'=>$suratJalan->id])->get();
         return view('kasir.process', ['suratJalan'=>$suratJalan, 'suratJalanDetail'=>$suratJalanDetail, 'edit'=>true]);
     }
 
@@ -47,7 +48,7 @@ class KasirController extends Controller
                     "harga_jumlah"    => $dataDetail->harga_jumlah,
                 ]);
         }
-//        var_dump($request->input("data-detail"));
 
+        return "ok";
     }
 }

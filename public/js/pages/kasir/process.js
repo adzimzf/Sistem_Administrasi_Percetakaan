@@ -6,7 +6,18 @@ $(function () {
     $(".harga-satuan").keyup(function () {
         qty = $(this).parent().prev().prev().text();
         harga_satuan = $(this).val() == "" ? 0 : $(this).val();
-        sum = parseInt(qty)*parseInt(harga_satuan);
+        isFixed = $(this).attr("isFixed");
+        if (isFixed == 0) {
+            sl = (($(this).parent().prev().prev().prev().text()).split(" ")[1]).split("x");
+            w  = parseInt(sl[0]);
+            h  = parseInt(sl[1]);
+            //convert to meters
+            w  = w / 100;
+            h  = h / 100;
+            sum = parseInt(qty)*(parseInt(harga_satuan)*w*h);
+        }else {
+            sum = parseInt(qty)*parseInt(harga_satuan);
+        }
         $(this).parent().next().text(sum);
         setTotal();
     });
@@ -76,11 +87,21 @@ $(function () {
             cache: false,
             timeout: 600000,
             success     : function (has) {
-                console.log("success :"+has)
+                if (has == "ok"){
+                    h = "<div class=\"alert alert-info alert-dismissable text-center \">";
+                    h += "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>";
+                    h += "<strong> Berhasil rubah data </strong>";
+                    h += "</div>";
+                    $("#alert-field").html(h);
+                }
             },
             error       : function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(XMLHttpRequest+textStatus+errorThrown)
-                console.log("err")
+                t = (XMLHttpRequest+textStatus+errorThrown)
+                h = "<div class=\"alert alert-error alert-dismissable text-center \">";
+                h += "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>";
+                h += "<strong>"+t+"</strong>";
+                h += "</div>";
+                $("#alert-field").html(h);
             }
         })
     });

@@ -76,9 +76,9 @@
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Sumber</label>
                                                         <select name="detail-sumber[]" id="" class="form-control flat">
-                                                            <option value="File">File</option>
-                                                            <option value="CD">CD</option>
-                                                            <option value="Dll">Dll</option>
+                                                           @foreach($jenisCetakan as $jenisCetakan)
+                                                                <option value="{{$jenisCetakan->id}}">{{$jenisCetakan->nama}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>

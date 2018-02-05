@@ -6,6 +6,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                <div id="alert-field"></div>
                 <!-- Horizontal Form -->
                 <div class="box box-info">
                     <div class="box-header with-border">
@@ -24,7 +25,7 @@
                                    Nama
                                </div>
                                <div class="col-md-10">
-                                   {{$suratJalan->nama}}
+                                   : {{$suratJalan->nama}}
                                </div>
                            </div>
                             <div class="col-md-12 my-data-detail">
@@ -32,7 +33,7 @@
                                     Nomer Telepon/ Email
                                 </div>
                                 <div class="col-md-10">
-                                    {{$suratJalan->no_telepon}}
+                                    : {{$suratJalan->no_telepon}}
                                 </div>
                             </div>
 
@@ -59,11 +60,12 @@
                                         <tr class="rows">
                                             <input class="detail_id" type="hidden" value="{{$detail->id}}">
                                             <td>{{$indexKey+1}}</td>
-                                            <td>{{$detail->peper_size}}</td>
+                                            <td>{{$detail->jenisCetakan()->first()->nama}} {{$detail->peper_size}}cm</td>
                                             <td class="qty">{{$detail->quantity}}</td>
                                             <td>{{$detail->jenisKertas()->get()[0]->nama}}</td>
                                             <td>
                                                 <input class="form-control harga-satuan form-input-khusus" type="number" value="{{$detail->harga_satuan}}"
+                                                isFixed="{{$detail->jenisCetakan()->first()->is_fixed}}"
                                                 @if(!$edit)disabled="disabled"@endif>
                                             </td>
                                             <td class="sum text-right">{{$detail->harga_jumlah}}</td>

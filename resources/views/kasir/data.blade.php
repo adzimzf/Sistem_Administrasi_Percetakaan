@@ -29,10 +29,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                @php
+                                $i = 1;
+                                @endphp
                                 @foreach($data as $data)
                                     <tr>
-                                        <td>1.</td>
+                                        <td>{{$i++}}</td>
                                         <td>{{$data->id}}</td>
                                         <td>{{$data->nama}}</td>
                                         <td>
@@ -40,7 +42,23 @@
                                                 <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
                                             </div>
                                         </td>
-                                        <td><span class="badge bg-red">55%</span></td>
+                                        <td>
+                                            @php
+                                            if ($data->total2 != 0) {
+                                                $persen = round(($data->uang_muka/$data->total2)*100);
+                                                if ($persen < 30) {
+                                                    echo "<span class=\"badge bg-red\">$persen%</span></td>";
+                                                }elseif ($persen < 70) {
+                                                    echo "<span class=\"badge bg-orange\">$persen%</span></td>";
+                                                }elseif ($persen < 90) {
+                                                    echo "<span class=\"badge bg-blue\">$persen%</span></td>";
+                                                }elseif ($persen == 100) {
+                                                    echo "<span class=\"badge bg-green\">$persen%</span></td>"    ;
+                                                }
+                                            }else{
+                                                echo "<span class=\"badge bg-red\">0%</span></td>"    ;
+                                            }
+                                            @endphp
                                         <td>
                                             <a href="{{url('/kasir/process/'.$data->id)}}" class="btn btn-primary">Process</a>
                                             <a href="{{url('/kasir/detail/'.$data->id)}}" class="btn btn-primary">Detail</a>

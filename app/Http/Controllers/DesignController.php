@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisCetakan;
 use App\Models\JenisKertas;
 use App\Models\SuratJalan;
 use App\Models\SuratJalanDetail;
@@ -14,7 +15,8 @@ class DesignController extends Controller
     public function index(Request $request)
     {
         $jenisKertas    = JenisKertas::all();
-        return view('designer.insert', ['jenisKertas'=>$jenisKertas]);
+        $jenisCetakan   = JenisCetakan::all();
+        return view('designer.insert', ['jenisKertas'=>$jenisKertas, 'jenisCetakan'=>$jenisCetakan]);
     }
 
     public function insert(Request $request)

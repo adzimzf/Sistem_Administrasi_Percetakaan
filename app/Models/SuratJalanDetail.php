@@ -19,4 +19,9 @@ class SuratJalanDetail extends Model
     {
         return $this->hasOne("App\Models\JenisKertas", 'id', 'jenis_kertas_id');
     }
+
+    public function jenisCetakan()
+    {
+        return $this->hasOne('App\Models\JenisCetakan', 'id', 'source');
+    }
 }
