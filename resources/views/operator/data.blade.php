@@ -31,18 +31,18 @@
                         <div class="box-body">
                             <table class="table table-bordered">
                                 <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Nomer Bon</th>
-                                        <th>Nama</th>
-                                        <th>Process</th>
-                                        <th>Pembayaran</th>
-                                        <th></th>
-                                    </tr>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Nomer Bon</th>
+                                    <th>Nama</th>
+                                    <th>Process</th>
+                                    <th>Pembayaran</th>
+                                    <th></th>
+                                </tr>
                                 </thead>
                                 <tbody id="tbody">
                                 @php
-                                $i = 1;
+                                    $i = 1;
                                 @endphp
                                 @foreach($data as $data)
                                     <tr>
@@ -55,7 +55,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            @php
+                                        @php
                                             if ($data->total2 != 0) {
                                                 $persen = round(($data->uang_muka/$data->total2)*100);
                                                 if ($persen < 30) {
@@ -70,10 +70,10 @@
                                             }else{
                                                 echo "<span class=\"badge bg-red\">0%</span></td>"    ;
                                             }
-                                            @endphp
+                                        @endphp
                                         <td>
-                                            <a href="{{url('/kasir/process/'.$data->id)}}" class="btn btn-primary">Process</a>
-                                            <a href="{{url('/kasir/detail/'.$data->id)}}" class="btn btn-primary">Detail</a>
+                                            <a href="{{url('/operator/process/'.$data->id)}}" class="btn btn-primary">Process</a>
+                                            <a href="{{url('/operator/detail/'.$data->id)}}" class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach

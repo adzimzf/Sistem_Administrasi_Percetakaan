@@ -87,7 +87,8 @@ class DesignController extends Controller
 
     private function saveImage($file) {
         if($file) {
-            $namaFile = sha1(date("Y-m-d H:i:s"));
+            $extension = $file->getClientOriginalExtension();
+            $namaFile = sha1(date("Y-m-d H:i:s")).".".$extension;
             $file->move('images/surat_jalan', $namaFile);
             return $namaFile;
         }

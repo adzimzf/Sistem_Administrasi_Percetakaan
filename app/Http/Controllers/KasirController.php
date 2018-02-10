@@ -51,4 +51,24 @@ class KasirController extends Controller
 
         return "ok";
     }
+
+    public function getAjax(Request $request)
+    {
+        $noBon = $request->input("noBon");
+        $nama  = $request->input("nama");
+
+        if ($noBon != "" || $nama != "") {
+            $data = SuratJalan::where("id", 'LIKE', "%".$noBon."%")
+                ->where("nama", "LIKE", $nama."%")
+                ->get();
+            return [
+                "success"   => "ok",
+                "data"      => $data
+            ];
+        }
+        return [
+            "success"   => "error",
+            "data"      => []
+        ];
+    }
 }

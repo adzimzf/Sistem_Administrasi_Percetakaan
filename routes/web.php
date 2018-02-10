@@ -26,7 +26,14 @@ Route::group(['prefix'=>'designer'], function () {
 
 Route::group(['prefix'=>'kasir'], function () {
     Route::get('data',             'KasirController@getData');
+    Route::get("data/ajax",        'KasirController@getAjax');
     Route::get('process/{id}',     'KasirController@getProcess');
     Route::get('detail/{id}',      'KasirController@getDetail');
     Route::post('setharga',        'KasirController@setHarga');
+});
+
+Route::group(['prefix'=>'operator'], function () {
+    Route::get('data',             'OperatorController@getData');
+    Route::get("data/ajax",        'OperatorController@getAjax');
+    Route::get("process/{id}",     'OperatorController@getProcess');
 });
