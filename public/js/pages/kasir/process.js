@@ -101,7 +101,7 @@ $(function () {
                     h += "</div>";
                     $("#alert-field").html(h);
                     if (cetak) {
-                        cetakData()
+                        cetakData($("#surat-jalan-id").val())
                     }
                 }
             },
@@ -118,22 +118,24 @@ $(function () {
 
 
 
-    function cetakData() {
-        data = "data";
-        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    function cetakData(id) {
+        $.get("/kasir/printBon/"+id, function (result) {
+            var mywindow = window.open('', 'PRINT', 'height=1700,width=1000');
 
-        mywindow.document.write('<html><head><title>' + document.title  + '</title>');
-        mywindow.document.write('</head><body >');
-        mywindow.document.write(data);
-        mywindow.document.write('</body></html>');
+            mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(result);
+            mywindow.document.write('</body></html>');
 
-        mywindow.document.close(); // necessary for IE >= 10
-        mywindow.focus(); // necessary for IE >= 10*/
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
 
-        mywindow.print();
-        mywindow.close();
+            mywindow.print();
+            mywindow.close();
 
-        return true;
+            return true;
+        });
+
     }
 
 })

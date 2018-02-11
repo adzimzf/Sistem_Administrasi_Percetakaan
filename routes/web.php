@@ -30,6 +30,7 @@ Route::group(['prefix'=>'kasir'], function () {
     Route::get('process/{id}',     'KasirController@getProcess');
     Route::get('detail/{id}',      'KasirController@getDetail');
     Route::post('setharga',        'KasirController@setHarga');
+    Route::get('printBon/{id}',    'KasirController@printBon');
 });
 
 Route::group(['prefix'=>'operator'], function () {

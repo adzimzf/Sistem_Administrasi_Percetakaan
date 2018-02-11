@@ -85,4 +85,11 @@ class KasirController extends Controller
             "data"      => []
         ];
     }
+
+    public function printBon($id)
+    {
+        $suratJalan     = SuratJalan::where(["id"=>$id])->first();
+        $suratJalanDetail= SuratJalanDetail::where(["surat_jalan_id"=>$id])->get();
+        return view("print.bon", ["suratJalan"=>$suratJalan, "suratJalanDetail"=>$suratJalanDetail]);
+    }
 }
