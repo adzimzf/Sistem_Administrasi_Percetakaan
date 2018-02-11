@@ -11,20 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AuthController@redir');
 
-Route::get('/home', function (){
-    return view('home');
-});
-
-Route::group(['prefix'=>'designer'], function () {
+Route::group(['prefix'=>'designer','middleware' => 'Designer'], function () {
     Route::get('/insert', 'DesignController@index');
     Route::post('/insert', 'DesignController@insert');
 });
 
-Route::group(['prefix'=>'kasir'], function () {
+Route::group(['prefix'=>'kasir', 'middleware' => 'Kasir'], function () {
     Route::get('data',             'KasirController@getData');
     Route::get("data/ajax",        'KasirController@getAjax');
     Route::get('process/{id}',     'KasirController@getProcess');
@@ -33,9 +27,10 @@ Route::group(['prefix'=>'kasir'], function () {
     Route::get('printBon/{id}',    'KasirController@printBon');
 });
 
-Route::group(['prefix'=>'operator'], function () {
+Route::group(['prefix'=>'operator','middleware' => 'Operator'], function () {
     Route::get('data',             'OperatorController@getData');
     Route::get("data/ajax",        'OperatorController@getAjax');
     Route::get("process/{id}",     'OperatorController@getProcess');
     Route::get("process/setDone/ajax",     'OperatorController@setDone');
 });
+Auth::routes();

@@ -231,6 +231,12 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
+        //register midleware
+        "Designer" => App\Http\Middleware\Designer::class,
+        "Administrator" => App\Http\Middleware\Administrator::class,
+        "Operator" => App\Http\Middleware\Operator::class,
+        "Kasir" => App\Http\Middleware\Kasir::class,
+
     ],
 
 ];

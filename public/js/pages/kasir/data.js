@@ -29,7 +29,7 @@ $(function () {
                             "<td>"+val.nama+"</td>\n" +
                             "<td>\n" +
                             "    <div class=\"progress progress-xs\">\n" +
-                            "        <div class=\"progress-bar progress-bar-danger\" style=\"width:"+val.proses+"%\"></div>\n" +
+                            "        <div class=\"progress-bar progress-bar-success\" style=\"width:"+val.proses+"%\"></div>\n" +
                             "    </div>\n" +
                             "</td>\n"
                         td += "<td>"
