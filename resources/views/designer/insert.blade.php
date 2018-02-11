@@ -25,8 +25,8 @@
                     {{csrf_field()}}
                     <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Nomer Bon :SKK-{{date("His-Y")}}-YUYU</h3>
-                        <input type="hidden" name="nomer-bon" value="SKK-{{date("His-Y")}}-YUYU">
+                        <h3 class="box-title">Nomer Bon : {{$nomerBon}}</h3>
+                        <input type="hidden" name="nomer-bon" value="{{$nomerBon}}">
                         <div class="pull-right">
                             <div class="pull-right">
                                 <input class="form-control datepicker" id="inputPassword3" name="tanggal-bon" required="required" placeholder="text" type="text" value="{{date("Y-m-d")}}">

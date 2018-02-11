@@ -16,7 +16,23 @@ class DesignController extends Controller
     {
         $jenisKertas    = JenisKertas::all();
         $jenisCetakan   = JenisCetakan::all();
-        return view('designer.insert', ['jenisKertas'=>$jenisKertas, 'jenisCetakan'=>$jenisCetakan]);
+        $nomerBon       = date("dmY")."001";
+        $nod            = SuratJalan::where(['tanggal'=>date("Y-m-d")])->orderBy("created_at", "desc")->first();
+        if ($nod != null){
+            $nomer = substr($nod->id, 8)+1;
+            $nomerBon = date("dmY").$this->addZero($nomer);
+        }
+        return view('designer.insert', ['jenisKertas'=>$jenisKertas, 'jenisCetakan'=>$jenisCetakan, 'nomerBon'=>$nomerBon]);
+    }
+
+    private function addZero($num)
+    {
+        if ($num < 10){
+            return "00".$num;
+        }elseif($num < 100){
+            return "0".$num;
+        }
+        return $num;
     }
 
     public function insert(Request $request)

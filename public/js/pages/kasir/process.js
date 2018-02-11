@@ -71,6 +71,7 @@ $(function () {
     $("#btn-simpan-cetak").click(function () {
         simpan(true)
     })
+
     function simpan(cetak) {
         url  = "/kasir/setharga"
         //build form data
@@ -100,7 +101,7 @@ $(function () {
                     h += "</div>";
                     $("#alert-field").html(h);
                     if (cetak) {
-                        cetak()
+                        cetakData()
                     }
                 }
             },
@@ -114,8 +115,25 @@ $(function () {
             }
         })
     }
-    
-    function cetak() {
-        
+
+
+
+    function cetakData() {
+        data = "data";
+        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+        mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
     }
+
 })
