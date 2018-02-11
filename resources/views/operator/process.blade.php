@@ -53,7 +53,6 @@
                                         <th>Jenis Bahan</th>
                                         <th>File</th>
                                         <th>Duplex</th>
-                                        <th>Box</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -63,16 +62,26 @@
                                             <input class="detail_id" type="hidden" value="{{$detail->id}}">
                                             <td>{{$indexKey+1}}</td>
                                             <td>{{$detail->jenisCetakan()->first()->nama}} {{$detail->peper_size}}cm</td>
-                                            <td class="qty">{{$detail->quantity}}</td>
+                                            <td>
+                                                {{--jenis cetakan adalah kartu nama--}}
+                                                @if($detail->jenisCetakan()->first()->id == 2 )
+                                                    <span class="qty">{{$detail->quantity}}</span><span> Box</span>
+                                                @else
+                                                    <span class="qty">{{$detail->quantity}}</span>
+                                                @endif
+                                            </td>
                                             <td>{{$detail->jenisKertas()->get()[0]->nama}}</td>
                                             <td class="text-center">
                                                 <a href="/images/surat_jalan/{{$detail->file_address}}" download=""><li class="fa fa-download"></li>
                                                 </a>
                                             </td>
                                             <td class="text-center">{{$detail->duplex}}</td>
-                                            <td class="text-center">{{$detail->box}}</td>
                                             <td>
-                                                <button class="btn btn-success">Done</button>
+                                                <button class="btn btn-success btn-process" id="{{$detail->id}}"
+                                                @if($detail->done == 1)
+                                                    disabled
+                                                @endif
+                                                >Done</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -87,8 +96,7 @@
                         <!-- box footer -->
 
                         <div class="box-footer">
-                            <button type="button" class="btn btn-default">Cancel</button>
-                            <button type="button" class="btn btn-info pull-right" id="btn-simpan">Simpan</button>
+                            <a href="/operator/data" class="btn btn-default">Back</a>
                         </div>
                         <!-- ./box-footer -->
                     </div>
@@ -106,5 +114,5 @@
 
 @push('scripts')
     {!! Html::script('/adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') !!}
-    {!! Html::script('/js/pages/kasir/process.js') !!}
+    {!! Html::script('/js/pages/operator/process.js') !!}
 @endpush

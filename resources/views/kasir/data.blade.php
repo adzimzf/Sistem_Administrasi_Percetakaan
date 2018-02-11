@@ -49,9 +49,15 @@
                                         <td>{{$i++}}</td>
                                         <td>{{$data->id}}</td>
                                         <td>{{$data->nama}}</td>
+                                        @php
+                                        $all = $data->getSuratJalanDetail()->count();
+                                        $done = $data->getSuratJalanDetail()->where(["done"=>1])->count();
+                                        $barPersen = ($done/$all*100);
+                                        //eachoperator
+                                        @endphp
                                         <td>
                                             <div class="progress progress-xs">
-                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                                <div class="progress-bar progress-bar-success" style="width: {{$barPersen}}%"></div>
                                             </div>
                                         </td>
                                         <td>

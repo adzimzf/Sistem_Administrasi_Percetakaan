@@ -72,10 +72,10 @@
                                     <div class="row" id="wrap-data-print">
                                         <div class="col-md-12 div-data-print">
                                             <div class="col-md-11">
-                                                <div class="col-sm-1 no-padding">
+                                                <div class="col-sm-2 no-padding">
                                                     <div class="form-group cuz-form-group">
-                                                        <label for="exampleInputEmail1">Sumber</label>
-                                                        <select name="detail-sumber[]" id="" class="form-control flat">
+                                                        <label for="exampleInputEmail1">Jenis</label>
+                                                        <select name="detail-sumber[]" id="" class="form-control flat jenis-cetakan">
                                                            @foreach($jenisCetakan as $jenisCetakan)
                                                                 <option value="{{$jenisCetakan->id}}">{{$jenisCetakan->nama}}</option>
                                                             @endforeach
@@ -96,7 +96,7 @@
                                                 </div>
                                                 <div class="col-sm-1 no-padding">
                                                     <div class="form-group cuz-form-group">
-                                                        <label for="exampleInputEmail1">@print</label>
+                                                        <label for="exampleInputEmail1" class="label-banyaknya">@print</label>
                                                         <input class="form-control" id="exampleInputEmail1" name="detail-banyaknya[]" placeholder="" type="number">
                                                     </div>
                                                 </div>
@@ -126,7 +126,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1 no-padding">
+                                                <div class="col-md-1 no-padding hide">
                                                     <div class="form-group cuz-form-group">
                                                         <label for="exampleInputEmail1">Box</label>
                                                         <input name="detail-box[]" type="number" class="form-control">

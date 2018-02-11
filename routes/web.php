@@ -36,4 +36,5 @@ Route::group(['prefix'=>'operator'], function () {
     Route::get('data',             'OperatorController@getData');
     Route::get("data/ajax",        'OperatorController@getAjax');
     Route::get("process/{id}",     'OperatorController@getProcess');
+    Route::get("process/setDone/ajax",     'OperatorController@setDone');
 });

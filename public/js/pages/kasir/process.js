@@ -66,6 +66,12 @@ $(function () {
     }
 
     $("#btn-simpan").click(function () {
+        simpan(false)
+    });
+    $("#btn-simpan-cetak").click(function () {
+        simpan(true)
+    })
+    function simpan(cetak) {
         url  = "/kasir/setharga"
         //build form data
         data = new FormData();
@@ -93,6 +99,9 @@ $(function () {
                     h += "<strong> Berhasil rubah data </strong>";
                     h += "</div>";
                     $("#alert-field").html(h);
+                    if (cetak) {
+                        cetak()
+                    }
                 }
             },
             error       : function (XMLHttpRequest, textStatus, errorThrown) {
@@ -104,5 +113,9 @@ $(function () {
                 $("#alert-field").html(h);
             }
         })
-    });
+    }
+    
+    function cetak() {
+        
+    }
 })

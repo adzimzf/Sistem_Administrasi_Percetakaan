@@ -17,4 +17,9 @@ class SuratJalan extends Model
     protected $primaryKey = 'id';
 
     public $incrementing = false;
+
+    public function getSuratJalanDetail()
+    {
+        return $this->hasOne("App\Models\SuratJalanDetail", 'surat_jalan_id', 'id');
+    }
 }

@@ -12,6 +12,7 @@ class KasirController extends Controller
     public function getData(Request $request)
     {
         $data = SuratJalan::all();
+        $dataDetail = SuratJalanDetail::all();
         return view('kasir.data', ['data'=>$data]);
     }
 
@@ -37,7 +38,7 @@ class KasirController extends Controller
             "total1"        =>$request->input("total1"),
             "total2"        =>$request->input("total2"),
             "uang_muka"     =>$request->input("uang-muka"),
-            "sisa"          =>$request->input("sisa")
+            "sisa"          =>$request->input("sisa"),
         ]);
 
         $dataDetail = json_decode($request->input("data-detail"));
@@ -61,9 +62,22 @@ class KasirController extends Controller
             $data = SuratJalan::where("id", 'LIKE', "%".$noBon."%")
                 ->where("nama", "LIKE", $nama."%")
                 ->get();
+            $res = array();
+            foreach ($data as $val) {
+                $all = $val->getSuratJalanDetail()->count();
+                $done = $val->getSuratJalanDetail()->where(["done"=>1])->count();
+                $proses = ($done/$all*100);
+                $res[]= [
+                    "id"        => $val->id,
+                    "nama"      => $val->nama,
+                    "total2"    => $val->total2,
+                    "uang_muka" => $val->uang_muka,
+                    "proses"    => $proses
+                ];
+            }
             return [
                 "success"   => "ok",
-                "data"      => $data
+                "data"      => $res
             ];
         }
         return [

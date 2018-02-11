@@ -9,17 +9,17 @@
                 <div id="alert-field"></div>
                 <!-- Horizontal Form -->
                 <div class="box box-info">
-                    <div class="box-header with-border">
-                        <div class="pull-right">
-                            <div class="pull-right">
-                                <input class="form-control datepicker" id="inputPassword3" placeholder="text" type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
                     <!-- form start -->
                     <div class="form-horizontal">
                         <div class="box-body">
+                            <div class="col-md-12 my-data-detail">
+                                <div class="col-md-2 bold">
+                                    No Bon
+                                </div>
+                                <div class="col-md-10">
+                                    : {{$suratJalan->id}}
+                                </div>
+                            </div>
                            <div class="col-md-12 my-data-detail">
                                <div class="col-md-2 bold">
                                    Nama
@@ -61,7 +61,14 @@
                                             <input class="detail_id" type="hidden" value="{{$detail->id}}">
                                             <td>{{$indexKey+1}}</td>
                                             <td>{{$detail->jenisCetakan()->first()->nama}} {{$detail->peper_size}}cm</td>
-                                            <td class="qty">{{$detail->quantity}}</td>
+                                            <td>
+                                                {{--jenis cetakan adalah kartu nama--}}
+                                                @if($detail->jenisCetakan()->first()->id == 2 )
+                                                    <span class="qty">{{$detail->quantity}}</span><span> Box</span>
+                                                @else
+                                                    <span class="qty">{{$detail->quantity}}</span>
+                                                @endif
+                                            </td>
                                             <td>{{$detail->jenisKertas()->get()[0]->nama}}</td>
                                             <td>
                                                 <input class="form-control harga-satuan form-input-khusus" type="number" value="{{$detail->harga_satuan}}"
@@ -108,7 +115,8 @@
                         <!-- box footer -->
 
                         <div class="box-footer">
-                            <button type="button" class="btn btn-default">Cancel</button>
+                            <a href="/kasir/data" class="btn btn-default">Back</a>
+                            <button type="button" class="btn btn-success pull-right" id="btn-simpan-cetak">Simpan dan Cetak</button>
                             <button type="button" class="btn btn-info pull-right" id="btn-simpan">Simpan</button>
                         </div>
                         <!-- ./box-footer -->

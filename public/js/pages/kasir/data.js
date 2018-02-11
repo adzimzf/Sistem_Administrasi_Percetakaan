@@ -2,6 +2,9 @@ $(function () {
     $("#no-bon, #nama").keyup(function () {
         getData()
     })
+    $(window).load(function () {
+        getData()
+    })
 
     function getData() {
         url   = "/kasir/data/ajax"
@@ -26,7 +29,7 @@ $(function () {
                             "<td>"+val.nama+"</td>\n" +
                             "<td>\n" +
                             "    <div class=\"progress progress-xs\">\n" +
-                            "        <div class=\"progress-bar progress-bar-danger\" style=\"width: 55%\"></div>\n" +
+                            "        <div class=\"progress-bar progress-bar-danger\" style=\"width:"+val.proses+"%\"></div>\n" +
                             "    </div>\n" +
                             "</td>\n"
                         td += "<td>"

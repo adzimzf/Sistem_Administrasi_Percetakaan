@@ -47,4 +47,14 @@ class OperatorController extends Controller
         $suratJalanDetail   = SuratJalanDetail::where(['surat_jalan_id'=>$suratJalan->id])->get();
         return view('operator.process', ['suratJalan'=>$suratJalan, 'suratJalanDetail'=>$suratJalanDetail, 'edit'=>true]);
     }
+
+    public function setDone(Request $request)
+    {
+        $id = $request->input("id");
+
+        $data = SuratJalanDetail::where(["id"=>$id]);
+        $data->update([
+            "done" => 1
+        ]);
+    }
 }

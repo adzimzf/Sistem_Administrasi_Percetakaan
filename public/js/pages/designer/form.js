@@ -18,4 +18,14 @@ $(function () {
         size = $(this).find("option:selected").attr("size");
         $(this).parents(".div-data-print").find(".inp-ukuran-kertas").val(size);
     });
+    //for jenis cetakan
+    $("#wrap-data-print").on("change",".jenis-cetakan",function () {
+        jenis = $(this).val();
+        //untuk jenisnya kartu nama
+        if (jenis == "2") {
+            $(this).parents(".div-data-print").find(".label-banyaknya").text("@box")
+        }else{
+            $(this).parents(".div-data-print").find(".label-banyaknya").text("@print")
+        }
+    });
 })
