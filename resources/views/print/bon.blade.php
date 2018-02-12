@@ -133,7 +133,7 @@
             <br>
             <br>
             <br>
-            (Syarifatul Auliya)
+            ({{Auth::user()->name}})
         </td>
     </tr>
     <tr>

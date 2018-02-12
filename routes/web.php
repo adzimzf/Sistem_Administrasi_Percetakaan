@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'AuthController@redir');
+Auth::routes();
+Route::get('/',                 'AuthController@redir');
+Route::get('/profile/{id}',     'AuthController@profile');
+Route::post('/update/profile',  'AuthController@update');
 
 Route::group(['prefix'=>'designer','middleware' => 'Designer'], function () {
     Route::get('/insert', 'DesignController@index');
@@ -33,4 +36,3 @@ Route::group(['prefix'=>'operator','middleware' => 'Operator'], function () {
     Route::get("process/{id}",     'OperatorController@getProcess');
     Route::get("process/setDone/ajax",     'OperatorController@setDone');
 });
-Auth::routes();
