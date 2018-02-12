@@ -232,6 +232,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         //register midleware
+        "MyAuth" => App\Http\Middleware\MyAuth::class,
         "Designer" => App\Http\Middleware\Designer::class,
         "Administrator" => App\Http\Middleware\Administrator::class,
         "Operator" => App\Http\Middleware\Operator::class,

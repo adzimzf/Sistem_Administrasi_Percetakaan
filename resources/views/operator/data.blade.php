@@ -11,7 +11,7 @@
                             <div class=" form-group">
                                 <label class="col-md-3 control-label" for="" style="margin-top: 5px;">No Bon</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" id="no-bon" placeholder="text" type="text">
+                                    <input class="form-control" id="no-bon" placeholder="Nomer Bon" type="text">
                                 </div>
                             </div>
                         </div>
@@ -20,7 +20,7 @@
                             <div class=" form-group">
                                 <label class="col-md-3 control-label" for="" style="margin-top: 5px;">Nama</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" id="nama" placeholder="text" type="text">
+                                    <input class="form-control" id="nama" placeholder="Nama Pemesan" type="text">
                                 </div>
                             </div>
                         </div>

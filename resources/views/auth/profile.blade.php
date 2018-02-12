@@ -3,19 +3,30 @@
 @section('content')
     <section class="content">
 
+
+        @if (Session::has('message_profile_update_success'))
+            <div class="alert alert-info alert-dismissable text-center ">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong> {{ Session::get('message_profile_update_success') }} </strong>
+            </div>
+        @endif
+        @if (Session::has('message_profile_update_error'))
+            <div class="alert alert-error alert-dismissable text-center ">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong> {{ Session::get('message_profile_update_error') }} </strong>
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row">
-            @if (Session::has('message_profile_update_success'))
-                <div class="alert alert-info alert-dismissable text-center ">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong> {{ Session::get('message_profile_update_success') }} </strong>
-                </div>
-            @endif
-                @if (Session::has('message_profile_update_error'))
-                    <div class="alert alert-error alert-dismissable text-center ">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong> {{ Session::get('message_profile_update_error') }} </strong>
-                    </div>
-                @endif
             <div class="col-md-3">
 
                 <!-- Profile Image -->
@@ -55,7 +66,11 @@
                     <div class="tab-content">
 
                         <div class="tab-pane active" id="settings">
-                            <form class="form-horizontal" action="/update/profile" method="POST" enctype="multipart/form-data">
+                            @if(Auth::user()->role_id == "4" && $user->id != Auth::user()->id)
+                                <form class="form-horizontal" action="/update/profile/admin" method="POST" enctype="multipart/form-data">
+                            @else
+                                <form class="form-horizontal" action="/update/profile" method="POST" enctype="multipart/form-data">
+                            @endif
                                 {{csrf_field()}}
                                 <input type="hidden" name="id" value="{{$user->id}}">
                                 <div class="form-group">

@@ -13,8 +13,19 @@
 
 Auth::routes();
 Route::get('/',                 'AuthController@redir');
-Route::get('/profile/{id}',     'AuthController@profile');
-Route::post('/update/profile',  'AuthController@update');
+
+Route::group(['middleware' => 'MyAuth'], function (){
+    Route::get('/profile/{id}',     'AuthController@profile');
+    Route::post('/update/profile',  'AuthController@update');
+});
+
+Route::group(['middleware' => 'Kasir'], function (){
+    Route::post('/update/profile/admin','AuthController@updateAdmin');
+    Route::get("/user/list",        'AuthController@userList');
+    Route::get("/user/add",         'AuthController@userAdd');
+    Route::post("/user/insert",     'AuthController@userInsert');
+    Route::get("/user/delete/{id}", 'AuthController@userDelete');
+});
 
 Route::group(['prefix'=>'designer','middleware' => 'Designer'], function () {
     Route::get('/insert', 'DesignController@index');
