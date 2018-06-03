@@ -178,7 +178,7 @@ class AuthController extends Controller
         $user       = New User();
         $user->name         = $name;
         $user->email        = $email;
-        $user->position     = $position;
+        $user->role_id      = $position;
         $user->password     = $password;
         if ($user->save()) {
             Session::flash('message_profile_update_success','Berhasil menambahkan user');
